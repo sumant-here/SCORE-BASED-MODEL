@@ -26,11 +26,9 @@ venv/
 env/
 ENV/
 
-# Datasets & Checkpoints (Only ignore root /data and /checkpoints)
+# Datasets (Only ignore root /data)
 /data
 !/data/.gitkeep
-/checkpoints
-!/checkpoints/.gitkeep
 *.tar.gz
 *.zip
 
