@@ -26,15 +26,11 @@ venv/
 env/
 ENV/
 
-# Datasets & Checkpoints (Never commit large binaries to GitHub)
-data/
-!data/.gitkeep
-checkpoints/
-!checkpoints/.gitkeep
-*.pt
-*.pth
-*.bin
-*.onnx
+# Datasets & Checkpoints (Only ignore root /data and /checkpoints)
+/data
+!/data/.gitkeep
+/checkpoints
+!/checkpoints/.gitkeep
 *.tar.gz
 *.zip
 
