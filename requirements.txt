@@ -13,21 +13,13 @@ matplotlib>=3.7.0
 seaborn>=0.12.0
 pillow>=9.5.0
 
-# Experiment Tracking & Configurations
+# Configuration & Utilities
 PyYAML>=6.0
 tqdm>=4.65.0
-mlflow>=2.10.0
 
-# FastAPI Inference Server
+# Web UI & API
+streamlit>=1.30.0
 fastapi>=0.100.0
 uvicorn>=0.22.0
 pydantic>=2.0.0
 python-multipart>=0.0.6
-
-# Streamlit Frontend Dashboard
-streamlit>=1.30.0
-
-# Testing & Quality
-pytest>=7.3.0
-pytest-cov>=4.1.0
-ruff>=0.1.0
