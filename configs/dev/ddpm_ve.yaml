@@ -1,0 +1,53 @@
+experiment_name: dev_ddpm_ve
+model: ddpm
+sde: ve
+device: auto
+seed: 42
+
+model_params:
+  base_channels: 32
+  channel_multipliers: [1, 2, 2]
+  num_res_blocks: 2
+  attention_resolutions: [16]
+  dropout: 0.1
+
+sde_params:
+  sigma_min: 0.01
+  sigma_max: 50.0
+  num_timesteps: 1000
+
+data:
+  data_dir: data
+  batch_size: 32
+  image_size: 32
+  subset_size: 500
+  num_workers: 0
+  selected_classes: null
+
+training:
+  steps: 100
+  lr: 0.001
+  weight_decay: 0.0001
+  optimizer: adam
+  lr_scheduler: warmup_cosine
+  warmup_steps: 10
+  use_ema: true
+  ema_decay: 0.999
+  amp: true
+  grad_clip: 1.0
+  log_every: 20
+  save_every: 50
+  sample_every: 50
+
+evaluation:
+  num_samples: 32
+  sampler: euler
+  sampler_steps: 50
+
+mlflow:
+  enabled: false
+  tracking_uri: http://localhost:5000
+  experiment_name: dev_ablation
+
+checkpoint_dir: checkpoints
+results_dir: results

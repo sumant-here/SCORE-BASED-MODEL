@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # FastAPI Inference Backend
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: score_models_api
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/workspace/data
+      - ./checkpoints:/workspace/checkpoints
+      - ./results:/workspace/results
+    environment:
+      - DEVICE=cpu
+      - ENV=production
+    restart: unless-stopped
+
+  # Streamlit Frontend Dashboard
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: score_models_app
+    command: streamlit run app/streamlit_app.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/workspace/data
+      - ./checkpoints:/workspace/checkpoints
+      - ./results:/workspace/results
+    environment:
+      - DEVICE=cpu
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  # MLflow Experiment Tracking Server
+  mlflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: score_models_mlflow
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root /workspace/mlartifacts
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlartifacts:/workspace/mlartifacts
+      - ./mlruns:/workspace/mlruns
+    restart: unless-stopped

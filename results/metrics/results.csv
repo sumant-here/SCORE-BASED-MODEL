@@ -1,0 +1,10 @@
+experiment_id,model,sde,width,depth,learning_rate,steps,parameters,training_time,sampling_time,fid,inception_score,inception_score_std,num_samples,seed,dataset,class_filter
+dev_ablation_model_ddpm_sde_vp,ddpm,vp,32,2,0.001,60,1624323,84.38853049278259,6.18,115.102,1.332,0.129,32,42,cifar10,
+dev_ablation_model_ddpm_sde_ve,ddpm,ve,32,2,0.001,60,1624323,89.93057203292847,7.09,84.784,1.204,0.049,32,42,cifar10,
+dev_ablation_model_ddpm_sde_subvp,ddpm,subvp,32,2,0.001,60,1624323,79.2803521156311,6.49,92.573,1.204,0.073,32,42,cifar10,
+dev_ablation_model_ddpmpp_sde_vp,ddpmpp,vp,32,2,0.001,60,1624323,86.17383980751038,7.01,110.027,1.329,0.096,32,42,cifar10,
+dev_ablation_model_ddpmpp_sde_ve,ddpmpp,ve,32,2,0.001,60,1624323,86.40647172927856,8.71,82.711,1.174,0.037,32,42,cifar10,
+dev_ablation_model_ddpmpp_sde_subvp,ddpmpp,subvp,32,2,0.001,60,1624323,143.9843635559082,10.23,89.237,1.21,0.077,32,42,cifar10,
+dev_ablation_model_ncsnpp_sde_vp,ncsnpp,vp,32,2,0.001,60,1624323,137.7170181274414,10.18,103.438,1.363,0.133,32,42,cifar10,
+dev_ablation_model_ncsnpp_sde_ve,ncsnpp,ve,32,2,0.001,60,1624323,129.09975004196167,9.95,93.147,1.234,0.145,32,42,cifar10,
+dev_ablation_model_ncsnpp_sde_subvp,ncsnpp,subvp,32,2,0.001,60,1624323,132.35146188735962,10.73,79.455,1.226,0.104,32,42,cifar10,None

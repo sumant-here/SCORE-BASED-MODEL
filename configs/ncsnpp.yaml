@@ -1,0 +1,54 @@
+experiment_name: ncsnpp_vp_cifar10
+model: ncsnpp
+sde: vp
+device: auto
+seed: 42
+
+model_params:
+  base_channels: 64
+  channel_multipliers: [1, 2, 2, 2]
+  num_res_blocks: 2
+  attention_resolutions: [16]
+  dropout: 0.1
+  fourier_scale: 16.0
+
+sde_params:
+  beta_min: 0.1
+  beta_max: 20.0
+  num_timesteps: 1000
+
+data:
+  data_dir: data
+  batch_size: 64
+  image_size: 32
+  subset_size: null
+  num_workers: 2
+  selected_classes: null
+
+training:
+  steps: 50000
+  lr: 0.0002
+  weight_decay: 0.0
+  optimizer: adam
+  lr_scheduler: warmup_cosine
+  warmup_steps: 1000
+  use_ema: true
+  ema_decay: 0.9999
+  amp: true
+  grad_clip: 1.0
+  log_every: 100
+  save_every: 2500
+  sample_every: 2500
+
+evaluation:
+  num_samples: 128
+  sampler: euler
+  sampler_steps: 100
+
+mlflow:
+  enabled: true
+  tracking_uri: http://localhost:5000
+  experiment_name: score_generative_models
+
+checkpoint_dir: checkpoints
+results_dir: results
